@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  gitlab-mr-review:
+    build: .
+    image: gitlab-mr-review:latest
+    container_name: gitlab-mr-review
+    ports:
+      - "8080:8080"
+    environment:
+      - GITLAB_URL=${GITLAB_URL}
+      - GITLAB_TOKEN=${GITLAB_TOKEN}
+      - GITLAB_WEBHOOK_SECRET=${GITLAB_WEBHOOK_SECRET}
+      - GITLAB_MAX_DIFF_LINES=${GITLAB_MAX_DIFF_LINES:-500}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - OPENAI_MODEL=${OPENAI_MODEL:-gpt-4o-mini}
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://localhost:8080/gitlab/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
