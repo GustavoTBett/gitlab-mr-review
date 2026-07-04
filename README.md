@@ -45,6 +45,7 @@ cp .env.example .env
 | `GITLAB_MAX_DIFF_LINES` | Limite de linhas do diff | `500` |
 | `OPENAI_API_KEY` | Chave da API OpenAI | `sk-xxxx` |
 | `OPENAI_MODEL` | Modelo a ser usado | `gpt-4o-mini` |
+| `OPENAI_TEMP` | Temperatura da geração | `1` |
 
 ### 2. Criar Token no GitLab
 

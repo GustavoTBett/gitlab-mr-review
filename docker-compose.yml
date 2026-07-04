@@ -12,6 +12,7 @@ services:
       - GITLAB_MAX_DIFF_LINES=${GITLAB_MAX_DIFF_LINES:-500}
       - OPENAI_API_KEY=${OPENAI_API_KEY}
       - OPENAI_MODEL=${OPENAI_MODEL:-gpt-4o-mini}
+      - OPENAI_TEMP=${OPENAI_TEMP:-1}
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "wget", "-q", "--spider", "http://localhost:8080/health"]
